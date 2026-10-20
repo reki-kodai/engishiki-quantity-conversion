@@ -4,22 +4,46 @@ from collections import defaultdict
 import os
 import math
 import re
+import sys
 
 # =========================================
 # XMLファイル入力
 # =========================================
 
-xml_path = input(
-    "XMLファイルのパスを入力してください: "
-).strip().strip('"').strip("'")
+# コマンドライン引数で3つのパスを渡すと、入力を求めずに実行する
+#   python 換算処理コード.py <XML> <taxonomy XML> <保存先フォルダ>
+# 引数が無い場合は従来どおり入力を求める（何も入力せずEnterで、本コードと同じフォルダのファイルを使う）
 
-taxonomy_path = input(
-    "taxonomy XMLファイルのパスを入力してください: "
-).strip().strip('"').strip("'")
+script_dir = os.path.dirname(os.path.abspath(__file__))
 
-output_dir = input(
-    "結果の保存先フォルダのパスを入力してください: "
-).strip().strip('"').strip("'")
+default_paths = [
+    os.path.join(script_dir, "engishiki_v24.xml"),
+    os.path.join(script_dir, "engishiki_taxonomy_standoff_master.xml"),
+    script_dir,
+]
+
+
+def ask_path(message, default):
+    value = input(
+        f"{message}（Enterで {default}）: "
+    ).strip().strip('"').strip("'")
+    return value or default
+
+
+if len(sys.argv) == 4:
+    xml_path, taxonomy_path, output_dir = sys.argv[1:4]
+else:
+    xml_path = ask_path(
+        "XMLファイルのパスを入力してください", default_paths[0]
+    )
+    taxonomy_path = ask_path(
+        "taxonomy XMLファイルのパスを入力してください", default_paths[1]
+    )
+    output_dir = ask_path(
+        "結果の保存先フォルダのパスを入力してください", default_paths[2]
+    )
+
+os.makedirs(output_dir, exist_ok=True)
 
 if not os.path.exists(xml_path):
     raise FileNotFoundError(
