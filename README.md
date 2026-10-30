@@ -33,3 +33,11 @@ python 換算処理コード.py engishiki_v24.xml engishiki_taxonomy_standoff_ma
 
 備考
 本コードは研究用途です。
+
+ライセンス
+・コード（換算処理コード.py、run_on_colab.ipynb）: MIT ライセンス（[LICENSE](LICENSE)）
+・データ（engishiki_v24.xml、engishiki_taxonomy_standoff_master.xml、結果（国別集計）.txt、結果（rule確認）.txt、結果（ログ）.txt）: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.ja)（延喜式サイトの利用条件と同じ）
+
+著作権者
+・人間文化研究機構広領域連携型基幹研究プロジェクト「異分野融合による総合書物学の拡張的研究」歴博ユニット「延喜式のデジタル技術による汎用化」
+・学術変革領域研究（A）「歴史情報学の創成」（領域代表）内 計画研究「TEIを中心とした高度な歴史テキスト構築」JP25H01244
